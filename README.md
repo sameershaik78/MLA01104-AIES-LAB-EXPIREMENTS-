@@ -24,6 +24,7 @@ Algorithm BFS(Graph, Start)
 6. Stop.
 
 BFS 2
+
 Algorithm BFS(Graph, Start)
 
 1. Create an empty Queue Q.
