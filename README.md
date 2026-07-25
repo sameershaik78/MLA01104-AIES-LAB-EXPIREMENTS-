@@ -44,3 +44,42 @@ Algorithm BFS(Graph, Start)
    End While
 
 6. Stop.
+
+N-QUEEN 
+Algorithm N_Queen(Board, Row, N)
+
+1. If Row = N
+      Print the Board
+      Return True
+
+2. For each Column from 0 to N-1
+      If position (Row, Column) is safe
+            Place Queen at (Row, Column)
+
+            If N_Queen(Board, Row + 1, N) = True
+                  Return True
+
+            Remove Queen from (Row, Column)   // Backtrack
+
+3. Return False
+
+
+Algorithm IsSafe(Board, Row, Column, N)
+
+1. Check the same column in previous rows.
+2. Check the upper-left diagonal.
+3. Check the upper-right diagonal.
+4. If no queen is found in any of the above,
+      Return True
+   Else
+      Return False
+
+
+Main Algorithm
+
+1. Read the value of N.
+2. Create an N × N board and initialize all cells to empty.
+3. Call N_Queen(Board, 0, N).
+4. If no solution exists,
+      Print "No Solution Found".
+5. Stop.
