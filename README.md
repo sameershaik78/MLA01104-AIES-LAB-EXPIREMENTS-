@@ -83,3 +83,28 @@ Main Algorithm
 4. If no solution exists,
       Print "No Solution Found".
 5. Stop.
+   
+ 8 PUZZLE Using BFS
+ Algorithm EightPuzzle(Start, Goal)
+
+1. Create an empty Queue.
+2. Create an empty Visited set.
+3. Insert the Start state into the Queue.
+4. Mark the Start state as Visited.
+
+5. While the Queue is not empty
+      a. Remove the front state from the Queue.
+      b. If the current state is the Goal state
+            Print "Goal Reached"
+            Print the solution path
+            Stop.
+      c. Find the position of the blank tile (0).
+      d. Generate all valid next states by moving
+         the blank tile Up, Down, Left, or Right.
+      e. For each generated state
+            If the state is not in Visited
+                  Add it to Visited.
+                  Insert it into the Queue.
+
+6. Print "No Solution Exists".
+7. Stop.
