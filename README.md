@@ -107,4 +107,27 @@ Main Algorithm
                   Insert it into the Queue.
 
 6. Print "No Solution Exists".
-7. Stop.
+7. Stop
+
+8. A*Search
+ START
+
+1. Create OPEN list and CLOSED list.
+2. Add the start node to the OPEN list.
+3. While OPEN list is not empty:
+      a. Select the node with the lowest f(n).
+      b. If it is the goal node:
+            Display the path.
+            Stop.
+      c. Move the node from OPEN to CLOSED.
+      d. For each neighboring node:
+            If neighbor is not in CLOSED:
+                Calculate:
+                    g(n) = cost from start
+                    h(n) = heuristic value
+                    f(n) = g(n) + h(n)
+                Add or update the neighbor in OPEN.
+4. If OPEN becomes empty:
+      Display "No Path Found".
+
+STOP
