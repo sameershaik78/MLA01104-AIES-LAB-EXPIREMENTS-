@@ -16,7 +16,6 @@ While Queue is not empty
             Enqueue node
 End While
 Stop
-
 **2. Depth First Search (DFS)**
 Start
 Create Stack
