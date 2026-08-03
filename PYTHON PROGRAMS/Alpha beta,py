@@ -1,0 +1,49 @@
+# Alpha-Beta Pruning
+
+MAX = 1000
+MIN = -1000
+
+def alphabeta(depth, nodeIndex, maximizingPlayer, values, alpha, beta, height):
+
+    # Leaf node
+    if depth == height:
+        return values[nodeIndex]
+
+    if maximizingPlayer:
+        best = MIN
+
+        for i in range(2):
+            val = alphabeta(depth + 1, nodeIndex * 2 + i,
+                            False, values, alpha, beta, height)
+            best = max(best, val)
+            alpha = max(alpha, best)
+
+            if beta <= alpha:
+                break
+
+        return best
+
+    else:
+        best = MAX
+
+        for i in range(2):
+            val = alphabeta(depth + 1, nodeIndex * 2 + i,
+                            True, values, alpha, beta, height)
+            best = min(best, val)
+            beta = min(beta, best)
+
+            if beta <= alpha:
+                break
+
+        return best
+
+
+# Predefined leaf node values
+values = [3, 5, 2, 9, 12, 5, 23, 23]
+
+# Only one input
+height = int(input("Enter tree height: "))
+
+result = alphabeta(0, 0, True, values, MIN, MAX, height)
+
+print("Optimal Value:", result)
