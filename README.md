@@ -1,133 +1,162 @@
 # MLA01104-AIES-LAB-EXPIREMENTS-
 SHAIK SAMEER PASHA 192425383
 
-BFS 1
+**1. Breadth First Search (BFS)**
+Start
+Create Queue
+Mark start node as visited
+Enqueue start node
 
-Algorithm BFS(Graph, Start)
+While Queue is not empty
+    Dequeue a node
+    Display node
+    For each adjacent node
+        If not visited
+            Mark visited
+            Enqueue node
+End While
+Stop
 
-1. Create an empty queue Q.
-2. Create an empty list/set Visited.
-3. Enqueue(Start) into Q.
-4. Mark Start as Visited.
+**2. Depth First Search (DFS)**
+Start
+Create Stack
+Push start node
 
-5. While Q is not empty do
-      a. Dequeue a node N from Q.
-      b. Print N.
-      c. For each adjacent node M of N do
-            If M is not Visited then
-                Mark M as Visited.
-                Enqueue(M) into Q.
-            End If
-         End For
-   End While
+While Stack is not empty
+    Pop node
+    If node not visited
+        Mark visited
+        Display node
+        Push all adjacent nodes
+End While
+Stop
 
-6. Stop.
+**3. Uniform Cost Search (UCS)**
+Start
+Create Priority Queue
+Insert start node with cost 0
 
-BFS 2
+While Queue is not empty
+    Remove node with minimum cost
+    If goal reached
+        Stop
+    Expand neighbors
+    Update cost
+    Insert into Queue
+End While
+Stop
 
-Algorithm BFS(Graph, Start)
+****4. A* Search****
+Start
+Create Priority Queue
+Insert start node
 
-1. Create an empty Queue Q.
-2. Create an empty Visited list.
-3. Enqueue(Start) into Q.
-4. Mark Start as Visited.
+While Queue is not empty
+    Remove node with lowest f(n)
+    If goal reached
+        Stop
+    Expand neighbors
+    Calculate f(n)=g(n)+h(n)
+    Insert into Queue
+End While
+Stop
 
-5. While Q is not empty do
-      a. Remove first node from Q.
-      b. Print the node.
-      c. For every adjacent node of the current node
-            If the node is not Visited then
-                Mark it as Visited.
-                Enqueue it into Q.
-            End If
-         End For
-   End While
+**5. Greedy Best First Search (GBFS)**
+Start
+Create Priority Queue
+Insert start node
 
-6. Stop.
+While Queue is not empty
+    Remove node with smallest heuristic
+    If goal reached
+        Stop
+    Expand neighbors
+    Insert neighbors using heuristic value
+End While
+Stop
 
-N-QUEEN 
-Algorithm N_Queen(Board, Row, N)
+**6. MiniMax Algorithm**
+MiniMax(node)
 
-1. If Row = N
-      Print the Board
-      Return True
+If node is leaf
+    Return value
 
-2. For each Column from 0 to N-1
-      If position (Row, Column) is safe
-            Place Queen at (Row, Column)
+If Maximizer
+    Return maximum of child values
 
-            If N_Queen(Board, Row + 1, N) = True
-                  Return True
+Else
+    Return minimum of child values
+End
 
-            Remove Queen from (Row, Column)   // Backtrack
+**7. Alpha-Beta Pruning**
+AlphaBeta(node, alpha, beta)
 
-3. Return False
+If node is leaf
+    Return value
+
+If Maximizer
+    Update alpha
+Else
+    Update beta
+
+If alpha >= beta
+    Prune remaining branches
+
+Return best value
+
+**8. Water Jug Problem**
+Start
+Fill jug
+Empty jug
+Pour water from one jug to another
+Repeat until target quantity is obtained
+Display solution
+Stop
+
+**9. N-Queen Problem**
+Start
+Place queen in first row
+
+For each row
+    Check safe position
+    Place queen
+    Move to next row
+    If no position
+        Backtrack
+End
+
+Display solution
+Stop
+
+**10. Crypt Arithmetic**
+Start
+Assign digits to letters
+Check leading digit is not zero
+Verify arithmetic equation
+If valid
+    Display solution
+Else
+    Try another assignment
 
 
-Algorithm IsSafe(Board, Row, Column, N)
+**11. 8-Puzzle Problem**
+Start
+Place initial state in Queue
 
-1. Check the same column in previous rows.
-2. Check the upper-left diagonal.
-3. Check the upper-right diagonal.
-4. If no queen is found in any of the above,
-      Return True
-   Else
-      Return False
+While goal not reached
+    Remove current state
+    Generate possible moves
+    Add new states
+End While
 
+Display solution path
+Stop
 
-Main Algorithm
-
-1. Read the value of N.
-2. Create an N × N board and initialize all cells to empty.
-3. Call N_Queen(Board, 0, N).
-4. If no solution exists,
-      Print "No Solution Found".
-5. Stop.
-   
- 8 PUZZLE Using BFS
- Algorithm EightPuzzle(Start, Goal)
-
-1. Create an empty Queue.
-2. Create an empty Visited set.
-3. Insert the Start state into the Queue.
-4. Mark the Start state as Visited.
-
-5. While the Queue is not empty
-      a. Remove the front state from the Queue.
-      b. If the current state is the Goal state
-            Print "Goal Reached"
-            Print the solution path
-            Stop.
-      c. Find the position of the blank tile (0).
-      d. Generate all valid next states by moving
-         the blank tile Up, Down, Left, or Right.
-      e. For each generated state
-            If the state is not in Visited
-                  Add it to Visited.
-                  Insert it into the Queue.
-
-6. Print "No Solution Exists".
-7. Stop
-
-8. A*Search
- START
-
-1. Create OPEN list and CLOSED list.
-2. Add the start node to the OPEN list.
-3. While OPEN list is not empty:
-      a. Select the node with the lowest f(n).
-      b. If it is the goal node:
-            Display the path.
-            Stop.
-      c. Move the node from OPEN to CLOSED.
-      d. For each neighboring node:
-            If neighbor is not in CLOSED:
-                Calculate:
-                    g(n) = cost from start
-                    h(n) = heuristic value
-                    f(n) = g(n) + h(n)
-                Add or update the neighbor in OPEN.
-4. If OPEN becomes empty:
-      Display "No Path Found".
-
-STOP
+**12. CMD (Monkey and Banana Problem)**
+Start
+Monkey moves to box
+Monkey pushes box under banana
+Monkey climbs box
+Monkey picks banana
+Goal achieved
+Stop
