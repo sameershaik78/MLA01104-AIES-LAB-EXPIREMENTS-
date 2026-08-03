@@ -16,7 +16,8 @@ While Queue is not empty
             Enqueue node
 End While
 Stop
-**2. Depth First Search (DFS)**
+
+****2. Depth First Search (DFS)**
 Start
 Create Stack
 Push start node
@@ -74,7 +75,7 @@ While Queue is not empty
 End While
 Stop
 
-**6. MiniMax Algorithm**
+**6.Mini Max**
 MiniMax(node)
 
 If node is leaf
@@ -136,7 +137,7 @@ If valid
     Display solution
 Else
     Try another assignment
-
+Stop
 
 **11. 8-Puzzle Problem**
 Start
