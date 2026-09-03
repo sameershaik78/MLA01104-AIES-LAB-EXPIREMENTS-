@@ -1,164 +1,363 @@
 # MLA01104-AIES-LAB-EXPIREMENTS-
 SHAIK SAMEER PASHA 192425383
+                                 **PYTHON PROGRAMS PSECUDO CODES**
 
 **1. Breadth First Search (BFS)**
+BFS(Graph, Start)
+
 Start
-Create Queue
-Mark start node as visited
-Enqueue start node
+Create an empty Queue
+Mark Start as Visited
+Enqueue Start into Queue
 
 While Queue is not empty
-    Dequeue a node
-    Display node
-    For each adjacent node
-        If not visited
-            Mark visited
-            Enqueue node
+    Node ← Dequeue from Queue
+    Display Node
+
+    For each adjacent node of Node
+        If adjacent node is not visited
+            Mark adjacent node as Visited
+            Enqueue adjacent node into Queue
+        End If
+    End For
 End While
+
 Stop
 
-****2. Depth First Search (DFS)**
+**2 DEPTH FIRST SEARCH (DFS)**
+DFS(Graph, Start)
+
 Start
-Create Stack
-Push start node
+Create an empty Stack
+Push Start into Stack
 
 While Stack is not empty
-    Pop node
-    If node not visited
-        Mark visited
-        Display node
-        Push all adjacent nodes
-End While
-Stop
+    Node ← Pop from Stack
 
-**3. Uniform Cost Search (UCS)**
+    If Node is not visited
+        Mark Node as Visited
+        Display Node
+
+        For each adjacent node of Node
+            If adjacent node is not visited
+                Push adjacent node into Stack
+            End If
+        End For
+    End If
+End While
+
+Stop
+**3 UNIFORM COST SEARCH (UCS)**
+UCS(Graph, Start, Goal)
+
 Start
-Create Priority Queue
-Insert start node with cost 0
+Create a Priority Queue
+Insert Start into Priority Queue with Cost = 0
 
-While Queue is not empty
-    Remove node with minimum cost
-    If goal reached
+While Priority Queue is not empty
+    Node ← Remove node with minimum Cost
+
+    If Node is Goal
+        Display solution
         Stop
-    Expand neighbors
-    Update cost
-    Insert into Queue
+    End If
+
+    For each neighbor of Node
+        NewCost ← Cost(Node) + EdgeCost(Node, Neighbor)
+
+        If Neighbor is not visited
+           OR NewCost < previously known cost
+            Update cost of Neighbor
+            Insert Neighbor into Priority Queue
+        End If
+    End For
 End While
+
 Stop
 
-****4. A* Search****
+**4 A* SEARCH**
+A_Star(Graph, Start, Goal)
+
 Start
-Create Priority Queue
-Insert start node
+Create a Priority Queue
+Set g(Start) = 0
+Calculate f(Start) = g(Start) + h(Start)
+Insert Start into Priority Queue
 
-While Queue is not empty
-    Remove node with lowest f(n)
-    If goal reached
+While Priority Queue is not empty
+    Node ← Remove node with lowest f(Node)
+
+    If Node is Goal
+        Display solution
         Stop
-    Expand neighbors
-    Calculate f(n)=g(n)+h(n)
-    Insert into Queue
+    End If
+
+    For each neighbor of Node
+        Calculate new g-cost
+
+        If new g-cost is better than previous g-cost
+            g(Neighbor) ← new g-cost
+            f(Neighbor) ← g(Neighbor) + h(Neighbor)
+            Insert Neighbor into Priority Queue
+        End If
+    End For
 End While
+
 Stop
 
-**5. Greedy Best First Search (GBFS)**
+**5 GREEDY BEST FIRST SEARCH(GBFS)**
+GBFS(Graph, Start, Goal)
+
 Start
-Create Priority Queue
-Insert start node
+Create a Priority Queue
+Insert Start using heuristic h(Start)
 
-While Queue is not empty
-    Remove node with smallest heuristic
-    If goal reached
+While Priority Queue is not empty
+    Node ← Remove node with smallest h(Node)
+
+    If Node is Goal
+        Display solution
         Stop
-    Expand neighbors
-    Insert neighbors using heuristic value
+    End If
+
+    Mark Node as Visited
+
+    For each neighbor of Node
+        If neighbor is not visited
+            Insert neighbor into Priority Queue
+            Priority ← h(Neighbor)
+        End If
+    End For
 End While
+
 Stop
+**6 MINMAX ALGORITHM **
+MINIMAX(Node, Depth, MaximizingPlayer)
 
-**6.Mini Max**
-MiniMax(node)
+If Node is a terminal node
+    Return UtilityValue(Node)
+End If
 
-If node is leaf
-    Return value
+If MaximizingPlayer = TRUE
+    BestValue ← -∞
 
-If Maximizer
-    Return maximum of child values
+    For each child of Node
+        Value ← MINIMAX(child, Depth + 1, FALSE)
+        BestValue ← MAX(BestValue, Value)
+    End For
+
+    Return BestValue
 
 Else
-    Return minimum of child values
-End
+    BestValue ← +∞
 
-**7. Alpha-Beta Pruning**
-AlphaBeta(node, alpha, beta)
+    For each child of Node
+        Value ← MINIMAX(child, Depth + 1, TRUE)
+        BestValue ← MIN(BestValue, Value)
+    End For
 
-If node is leaf
-    Return value
+    Return BestValue
+End If
 
-If Maximizer
-    Update alpha
+**7 ALPHA BETA PRUNING **
+ALPHA_BETA(Node, Alpha, Beta, MaximizingPlayer)
+
+If Node is a terminal node
+    Return UtilityValue(Node)
+End If
+
+If MaximizingPlayer = TRUE
+
+    BestValue ← -∞
+
+    For each child of Node
+        Value ← ALPHA_BETA(child, Alpha, Beta, FALSE)
+
+        BestValue ← MAX(BestValue, Value)
+        Alpha ← MAX(Alpha, BestValue)
+
+        If Alpha ≥ Beta
+            Prune remaining branches
+            Break
+        End If
+    End For
+
+    Return BestValue
+
 Else
-    Update beta
 
-If alpha >= beta
-    Prune remaining branches
+    BestValue ← +∞
 
-Return best value
+    For each child of Node
+        Value ← ALPHA_BETA(child, Alpha, Beta, TRUE)
 
-**8. Water Jug Problem**
+        BestValue ← MIN(BestValue, Value)
+        Beta ← MIN(Beta, BestValue)
+
+        If Alpha ≥ Beta
+            Prune remaining branches
+            Break
+        End If
+    End For
+
+    Return BestValue
+End If
+**8 WATER JUG PROBLEM**
+WATER_JUG(A, B, T)
+
 Start
-Fill jug
-Empty jug
-Pour water from one jug to another
-Repeat until target quantity is obtained
-Display solution
+Create a Queue
+Insert initial state (0, 0)
+Mark initial state as Visited
+
+While Queue is not empty
+
+    CurrentState ← Dequeue
+
+    If CurrentState contains target quantity T
+        Display solution path
+        Stop
+    End If
+
+    Generate possible states:
+        1. Fill Jug A
+        2. Fill Jug B
+        3. Empty Jug A
+        4. Empty Jug B
+        5. Pour Jug A into Jug B
+        6. Pour Jug B into Jug A
+
+    For each new state
+        If new state is not visited
+            Mark new state as Visited
+            Enqueue new state
+        End If
+    End For
+
+End While
+
+Display "No solution"
 Stop
+**9 N QUEEN PROBLEM**
+N_QUEEN(Row)
 
-**9. N-Queen Problem**
-Start
-Place queen in first row
-
-For each row
-    Check safe position
-    Place queen
-    Move to next row
-    If no position
-        Backtrack
-End
-
-Display solution
-Stop
-
-**10. Crypt Arithmetic**
-Start
-Assign digits to letters
-Check leading digit is not zero
-Verify arithmetic equation
-If valid
+If Row > N
     Display solution
-Else
-    Try another assignment
+    Return TRUE
+End If
+
+For Column ← 1 to N
+
+    If Position(Row, Column) is Safe
+
+        Place Queen at (Row, Column)
+
+        If N_QUEEN(Row + 1) = TRUE
+            Return TRUE
+        End If
+
+        Remove Queen from (Row, Column)
+    End If
+
+End For
+
+Return FALSE
+**10 Cryptarithmetic Problem**
+CRYPTARITHMETIC(Words, Result)
+
+Start
+
+Identify all unique letters
+Assign a different digit (0–9) to each letter
+
+For each possible digit assignment
+
+    Ensure leading letters are not assigned 0
+
+    Replace letters with their assigned digits
+
+    Evaluate the arithmetic equation
+
+    If equation is correct
+        Display letter-to-digit assignment
+        Display solution
+        Stop
+    End If
+
+End For
+
+Display "No solution"
 Stop
 
-**11. 8-Puzzle Problem**
-Start
-Place initial state in Queue
+**11 8 PUZZLE PROBLEM**
+8_PUZZLE(Start, Goal)
 
-While goal not reached
-    Remove current state
-    Generate possible moves
-    Add new states
+Start
+Create a Queue
+Insert Start state into Queue
+Mark Start as Visited
+Store parent of Start as NULL
+
+While Queue is not empty
+
+    Current ← Dequeue from Queue
+
+    If Current = Goal
+        Display solution path
+        Stop
+    End If
+
+    Generate all possible moves:
+        Move blank Up
+        Move blank Down
+        Move blank Left
+        Move blank Right
+
+    For each NewState
+
+        If NewState is valid
+           AND NewState is not visited
+
+            Mark NewState as Visited
+            Store Current as parent of NewState
+            Enqueue NewState
+        End If
+
+    End For
+
 End While
 
-Display solution path
+Display "No solution"
 Stop
+**12 MONKEY AND BANANA PROBLEM **
+MONKEY_BANANA()
 
-
-
-**12. CMD (Monkey and Banana Problem)**
 Start
-Monkey moves to box
-Monkey pushes box under banana
-Monkey climbs box
-Monkey picks banana
-Goal achieved
+
+Initial state:
+    Monkey is on floor
+    Box is away from banana
+    Banana is hanging above
+
+If monkey is not near the box
+    Monkey moves to the box
+End If
+
+If box is not under the banana
+    Monkey pushes box under the banana
+End If
+
+Monkey climbs onto the box
+
+If monkey is on the box
+    Monkey reaches for the banana
+    Monkey picks the banana
+End If
+
+If banana is obtained
+    Display "Goal Achieved"
+Else
+    Continue searching
+End If
+
 Stop
